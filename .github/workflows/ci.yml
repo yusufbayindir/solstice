@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-test:
+    name: Build & Test (iOS Simulator)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_26.app || sudo xcode-select -switch /Applications/Xcode.app
+
+      - name: Locate project
+        id: proj
+        run: |
+          WS=$(find . -maxdepth 2 -name '*.xcworkspace' -not -path '*/.*' | head -1)
+          PROJ=$(find . -maxdepth 2 -name '*.xcodeproj' -not -path '*/.*' | head -1)
+          if [ -n "$WS" ]; then
+            echo "found=1" >> "$GITHUB_OUTPUT"
+            echo "flag=-workspace" >> "$GITHUB_OUTPUT"
+            echo "path=$WS" >> "$GITHUB_OUTPUT"
+          elif [ -n "$PROJ" ]; then
+            echo "found=1" >> "$GITHUB_OUTPUT"
+            echo "flag=-project" >> "$GITHUB_OUTPUT"
+            echo "path=$PROJ" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=0" >> "$GITHUB_OUTPUT"
+            echo "::notice::No Xcode project yet — infra-only commit, skipping build."
+          fi
+
+      - name: Resolve scheme
+        if: steps.proj.outputs.found == '1'
+        id: scheme
+        run: |
+          SCHEME=$(xcodebuild ${{ steps.proj.outputs.flag }} "${{ steps.proj.outputs.path }}" -list -json \
+            | python3 -c 'import sys,json; d=json.load(sys.stdin); k="workspace" if "workspace" in d else "project"; print(d[k]["schemes"][0])')
+          echo "name=$SCHEME" >> "$GITHUB_OUTPUT"
+
+      - name: Build & test
+        if: steps.proj.outputs.found == '1'
+        run: |
+          xcodebuild test \
+            ${{ steps.proj.outputs.flag }} "${{ steps.proj.outputs.path }}" \
+            -scheme "${{ steps.scheme.outputs.name }}" \
+            -destination 'platform=iOS Simulator,name=iPhone 17' \
+            -resultBundlePath TestResults \
+            CODE_SIGNING_ALLOWED=NO | xcpretty || \
+          xcodebuild test \
+            ${{ steps.proj.outputs.flag }} "${{ steps.proj.outputs.path }}" \
+            -scheme "${{ steps.scheme.outputs.name }}" \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            CODE_SIGNING_ALLOWED=NO
