@@ -261,9 +261,10 @@ struct CalendarView: View {
             }
 
             let fertileStart = cal.startOfDay(for: pred.fertileWindow.start)
+            // DateInterval.end is exclusive (midnight after the last day), so use strict <
             let fertileEnd = cal.startOfDay(for: pred.fertileWindow.end)
             let dayStart = cal.startOfDay(for: date)
-            if dayStart >= fertileStart && dayStart <= fertileEnd {
+            if dayStart >= fertileStart && dayStart < fertileEnd {
                 isFertile = true
             }
 
@@ -287,9 +288,10 @@ struct CalendarView: View {
     private func monthsToDisplay() -> [Date] {
         let cal = Calendar.current
         var months: [Date] = []
-        // 1 month back + current + 3 forward
-        for offset in -1...3 {
-            if let month = cal.date(byAdding: .month, value: offset, to: Calendar.current.startOfMonth(for: Date())) {
+        // Build window centred on displayedMonth so prev/next never scrollTo a missing ID.
+        // 3 months back + current + 3 forward relative to the current displayed month.
+        for offset in -3...3 {
+            if let month = cal.date(byAdding: .month, value: offset, to: displayedMonth) {
                 months.append(month)
             }
         }

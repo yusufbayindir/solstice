@@ -479,18 +479,22 @@ struct LogEntryView: View {
         guard !isSaving else { return }
         isSaving = true
 
+        // Enforce periodEnd >= periodStart on all paths (create and update)
+        let resolvedStart = periodStart ?? selectedDate
+        let resolvedEnd: Date? = periodEnd.flatMap { $0 >= resolvedStart ? $0 : nil }
+
         let entry: CycleEntry
         if let existing = existingEntry {
             // Update existing entry
-            existing.periodStart = periodStart ?? selectedDate
-            existing.periodEnd = periodEnd
+            existing.periodStart = resolvedStart
+            existing.periodEnd = resolvedEnd
             existing.notes = notes
             entry = existing
         } else {
             // Create new entry
             let newEntry = CycleEntry(
-                periodStart: periodStart ?? selectedDate,
-                periodEnd: periodEnd,
+                periodStart: resolvedStart,
+                periodEnd: resolvedEnd,
                 notes: notes
             )
             modelContext.insert(newEntry)
@@ -505,14 +509,14 @@ struct LogEntryView: View {
 
         // Insert symptom logs
         for symptom in selectedSymptoms {
-            let log = SymptomLog(date: periodStart ?? selectedDate, symptom: symptom, intensity: 1)
+            let log = SymptomLog(date: resolvedStart, symptom: symptom, intensity: 1)
             modelContext.insert(log)
             entry.symptomLogs.append(log)
         }
 
         // Insert mood logs
         for mood in selectedMoods {
-            let log = MoodLog(date: periodStart ?? selectedDate, mood: mood)
+            let log = MoodLog(date: resolvedStart, mood: mood)
             modelContext.insert(log)
             entry.moodLogs.append(log)
         }
@@ -522,6 +526,8 @@ struct LogEntryView: View {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
             dismiss()
         } catch {
+            // Roll back all in-memory inserts so a retry doesn't duplicate records
+            modelContext.rollback()
             isSaving = false
         }
     }

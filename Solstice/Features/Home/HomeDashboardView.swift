@@ -123,9 +123,6 @@ struct HomeDashboardView: View {
                 .padding(.trailing, 20)
                 .padding(.bottom, 32)
         }
-        .sheet(isPresented: $appState.showLogEntry) {
-            LogEntryView(initialDate: Date())
-        }
         .navigationTitle(todayTitle)
         .navigationBarTitleDisplayMode(.large)
         .toolbar {

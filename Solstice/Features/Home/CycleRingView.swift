@@ -131,7 +131,9 @@ struct CycleRingView: View {
     }
 
     private func drawElapsedSweep(context: GraphicsContext, center: CGPoint, radius: CGFloat) {
-        let endAngle = angle(forDayOffset: viewModel.cycleDay - 1)
+        // Clamp to cycleLength so an overdue prediction doesn't wrap past 360°
+        let clampedDay = min(viewModel.cycleDay - 1, viewModel.cycleLength - 1)
+        let endAngle = angle(forDayOffset: max(0, clampedDay))
         var path = Path()
         path.addArc(
             center: center,
@@ -224,7 +226,8 @@ struct CycleRingView: View {
     }
 
     private func drawTodayKnob(context: GraphicsContext, center: CGPoint, radius: CGFloat) {
-        let todayAngle = angle(forDayOffset: viewModel.cycleDay - 1)
+        let clampedDay = min(viewModel.cycleDay - 1, viewModel.cycleLength - 1)
+        let todayAngle = angle(forDayOffset: max(0, clampedDay))
         let radians = todayAngle.radians
         let knobCenter = CGPoint(
             x: center.x + radius * CGFloat(cos(radians)),
