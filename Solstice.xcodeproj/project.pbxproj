@@ -8,18 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		0372977FD8C84CC6928CC8CE /* PredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A883B92FC5362D8742FCA6 /* PredictionEngine.swift */; };
+		15DF512F9B8065CCCFEA3664 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3928DABEB9D6FD796079C15 /* CalendarView.swift */; };
 		2138259704EF518A56BA14E6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEAA90CC8C9C5F7A112C42 /* AppSettings.swift */; };
 		350909997AE5FD2A58F7919C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105072CA331B5288F4B72768 /* AppState.swift */; };
 		4110189A2BBAD2671DD9A4A2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2FACC10340FBD4F443F76 /* OnboardingView.swift */; };
 		4B9529C5AAC038ECE5A0E463 /* SolsticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55260F263268830893A6E7B /* SolsticeApp.swift */; };
 		55EA4CE2ABC112A9E39E48DB /* SymptomLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744845134DEFD16FFBD1DF6 /* SymptomLog.swift */; };
+		7231B0B21862708D611B194B /* CycleRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D76FE56B003E6E72135399 /* CycleRingView.swift */; };
 		73C0133B58084724E94DA027 /* PredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7225499E6F126B7D893AC413 /* PredictionEngineTests.swift */; };
 		7E12D4EE5857A4E92E5E6B85 /* AppLockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0900DC9902F5564B1D397189 /* AppLockManager.swift */; };
+		824E36936D379B4CBA3E65AB /* LogEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5DE8D0C431683D8698604A /* LogEntryView.swift */; };
 		8BAB126C1D8E9AF13985B400 /* MoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6CB148057F27A7EA08A6B /* MoodLog.swift */; };
+		A4A071225D0D9CE459DB3F7E /* HomeDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B7CD906EAA9817A29B0E7 /* HomeDashboardView.swift */; };
 		AF7D5026FD28D95EFD28C91B /* Color+Solstice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7268AF5EB597F65C5A9DA /* Color+Solstice.swift */; };
 		B86736759420D09DBB1DB4A7 /* CycleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA424B697CDD9ED3F8E312B /* CycleEntry.swift */; };
 		D5A47B79F89A3D04A08DA697 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D97C5C16124A35E486827 /* ContentView.swift */; };
+		E2B96A21A9D1E8DF17FC3E42 /* HomeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1AC2FBD7905C7A65669881 /* HomeTab.swift */; };
 		EA825A025AF680BFDD805036 /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA1683EAF5F8564DB1B5 /* AppLockView.swift */; };
+		F2B5A3F5B41A9D26B49C4949 /* DayDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A6BDC0EE962AADA1A57500 /* DayDetailSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,15 +46,21 @@
 		2DD7268AF5EB597F65C5A9DA /* Color+Solstice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Solstice.swift"; sourceTree = "<group>"; };
 		2FA424B697CDD9ED3F8E312B /* CycleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleEntry.swift; sourceTree = "<group>"; };
 		388D97C5C16124A35E486827 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		47A6BDC0EE962AADA1A57500 /* DayDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailSheet.swift; sourceTree = "<group>"; };
 		7225499E6F126B7D893AC413 /* PredictionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEngineTests.swift; sourceTree = "<group>"; };
 		73E2FACC10340FBD4F443F76 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		7B5DE8D0C431683D8698604A /* LogEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEntryView.swift; sourceTree = "<group>"; };
+		7D1AC2FBD7905C7A65669881 /* HomeTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTab.swift; sourceTree = "<group>"; };
 		87E6CB148057F27A7EA08A6B /* MoodLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLog.swift; sourceTree = "<group>"; };
 		8D0B09CC2E2FE3CE5DA74A3D /* Solstice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Solstice.entitlements; sourceTree = "<group>"; };
 		8F77FA1683EAF5F8564DB1B5 /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		A55260F263268830893A6E7B /* SolsticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolsticeApp.swift; sourceTree = "<group>"; };
+		A6D76FE56B003E6E72135399 /* CycleRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleRingView.swift; sourceTree = "<group>"; };
+		C3928DABEB9D6FD796079C15 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		C78D688787E3A0694B70094D /* Solstice.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Solstice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D744845134DEFD16FFBD1DF6 /* SymptomLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomLog.swift; sourceTree = "<group>"; };
 		E8A883B92FC5362D8742FCA6 /* PredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEngine.swift; sourceTree = "<group>"; };
+		F35B7CD906EAA9817A29B0E7 /* HomeDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -87,6 +99,25 @@
 			path = Prediction;
 			sourceTree = "<group>";
 		};
+		7F333365F8929367901587B9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A6D76FE56B003E6E72135399 /* CycleRingView.swift */,
+				F35B7CD906EAA9817A29B0E7 /* HomeDashboardView.swift */,
+				7D1AC2FBD7905C7A65669881 /* HomeTab.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		83D6B7CCF0C60F2285C5DE99 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				C3928DABEB9D6FD796079C15 /* CalendarView.swift */,
+				47A6BDC0EE962AADA1A57500 /* DayDetailSheet.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		A345356EB37BB601D1FF69F6 = {
 			isa = PBXGroup;
 			children = (
@@ -120,10 +151,21 @@
 			path = Solstice;
 			sourceTree = "<group>";
 		};
+		BA1218DEDC51F5A900FEEA68 /* LogEntry */ = {
+			isa = PBXGroup;
+			children = (
+				7B5DE8D0C431683D8698604A /* LogEntryView.swift */,
+			);
+			path = LogEntry;
+			sourceTree = "<group>";
+		};
 		C8406C8D6D19AA09C1BF8442 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				F6CD9D8510E52375E7A64F03 /* AppLock */,
+				83D6B7CCF0C60F2285C5DE99 /* Calendar */,
+				7F333365F8929367901587B9 /* Home */,
+				BA1218DEDC51F5A900FEEA68 /* LogEntry */,
 				4226888ADC7704AF3C3AD462 /* Onboarding */,
 			);
 			path = Features;
@@ -227,9 +269,15 @@
 				EA825A025AF680BFDD805036 /* AppLockView.swift in Sources */,
 				2138259704EF518A56BA14E6 /* AppSettings.swift in Sources */,
 				350909997AE5FD2A58F7919C /* AppState.swift in Sources */,
+				15DF512F9B8065CCCFEA3664 /* CalendarView.swift in Sources */,
 				AF7D5026FD28D95EFD28C91B /* Color+Solstice.swift in Sources */,
 				D5A47B79F89A3D04A08DA697 /* ContentView.swift in Sources */,
 				B86736759420D09DBB1DB4A7 /* CycleEntry.swift in Sources */,
+				7231B0B21862708D611B194B /* CycleRingView.swift in Sources */,
+				F2B5A3F5B41A9D26B49C4949 /* DayDetailSheet.swift in Sources */,
+				A4A071225D0D9CE459DB3F7E /* HomeDashboardView.swift in Sources */,
+				E2B96A21A9D1E8DF17FC3E42 /* HomeTab.swift in Sources */,
+				824E36936D379B4CBA3E65AB /* LogEntryView.swift in Sources */,
 				8BAB126C1D8E9AF13985B400 /* MoodLog.swift in Sources */,
 				4110189A2BBAD2671DD9A4A2 /* OnboardingView.swift in Sources */,
 				0372977FD8C84CC6928CC8CE /* PredictionEngine.swift in Sources */,
