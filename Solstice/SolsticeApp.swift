@@ -41,6 +41,8 @@ struct RootView: View {
 
     var body: some View {
         ZStack {
+            Color.solsticeBackground.ignoresSafeArea()
+
             ContentView()
                 .environment(appState)
                 .environment(\.predictionEngine, predictionEngine)
@@ -63,6 +65,7 @@ struct RootView: View {
             OnboardingView()
                 .environment(appState)
                 .environment(\.modelContext, modelContext)
+                .background(Color.solsticeBackground.ignoresSafeArea())
         }
         .onChange(of: scenePhase) { _, newPhase in
             switch newPhase {
