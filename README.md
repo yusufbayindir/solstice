@@ -17,8 +17,8 @@ See [`.factory/ORCHESTRATION.md`](.factory/ORCHESTRATION.md) for how the factory
 - [x] Stage 2 — Naming → **Solstice**
 - [x] Stage 3 — Design system (8 screen specs, full component inventory)
 - [x] Stage 4 — Build (4a scaffold+models+engine · 4b onboarding+lock · 4c home+calendar+log · 4d insights+privacy+settings)
-- [ ] Stage 5 — QA + CI
-- [ ] Stage 6 — Review & merge to main
+- [x] Stage 5 — QA + CI → 10/10 tests, 0 warnings, PASS
+- [x] Stage 6 — All PRs reviewed, fixed, and merged to main
 
 ## Build
 Xcode 26 / Swift 6.2, iOS 18+. Open the project and run on an iPhone 17 simulator.
