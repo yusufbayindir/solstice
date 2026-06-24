@@ -8,13 +8,11 @@ struct ContentView: View {
         @Bindable var appState = appState
         TabView(selection: $appState.selectedTab) {
             Tab("Home", systemImage: "house.fill", value: AppTab.home) {
-                NavigationStack {
-                    HomeView()
-                }
+                HomeTab()
             }
             Tab("Calendar", systemImage: "calendar", value: AppTab.calendar) {
                 NavigationStack {
-                    CalendarPlaceholderView()
+                    CalendarView()
                 }
             }
             Tab("Insights", systemImage: "chart.xyaxis.line", value: AppTab.insights) {
