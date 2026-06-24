@@ -10,13 +10,16 @@
 		0372977FD8C84CC6928CC8CE /* PredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A883B92FC5362D8742FCA6 /* PredictionEngine.swift */; };
 		2138259704EF518A56BA14E6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEAA90CC8C9C5F7A112C42 /* AppSettings.swift */; };
 		350909997AE5FD2A58F7919C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105072CA331B5288F4B72768 /* AppState.swift */; };
+		4110189A2BBAD2671DD9A4A2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2FACC10340FBD4F443F76 /* OnboardingView.swift */; };
 		4B9529C5AAC038ECE5A0E463 /* SolsticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55260F263268830893A6E7B /* SolsticeApp.swift */; };
 		55EA4CE2ABC112A9E39E48DB /* SymptomLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744845134DEFD16FFBD1DF6 /* SymptomLog.swift */; };
 		73C0133B58084724E94DA027 /* PredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7225499E6F126B7D893AC413 /* PredictionEngineTests.swift */; };
+		7E12D4EE5857A4E92E5E6B85 /* AppLockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0900DC9902F5564B1D397189 /* AppLockManager.swift */; };
 		8BAB126C1D8E9AF13985B400 /* MoodLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6CB148057F27A7EA08A6B /* MoodLog.swift */; };
 		AF7D5026FD28D95EFD28C91B /* Color+Solstice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7268AF5EB597F65C5A9DA /* Color+Solstice.swift */; };
 		B86736759420D09DBB1DB4A7 /* CycleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA424B697CDD9ED3F8E312B /* CycleEntry.swift */; };
 		D5A47B79F89A3D04A08DA697 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D97C5C16124A35E486827 /* ContentView.swift */; };
+		EA825A025AF680BFDD805036 /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA1683EAF5F8564DB1B5 /* AppLockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,14 +34,17 @@
 
 /* Begin PBXFileReference section */
 		084FC61B1FFE968D5490C6E0 /* SolsticeTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SolsticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0900DC9902F5564B1D397189 /* AppLockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockManager.swift; sourceTree = "<group>"; };
 		105072CA331B5288F4B72768 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		12EEAA90CC8C9C5F7A112C42 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		2DD7268AF5EB597F65C5A9DA /* Color+Solstice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Solstice.swift"; sourceTree = "<group>"; };
 		2FA424B697CDD9ED3F8E312B /* CycleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleEntry.swift; sourceTree = "<group>"; };
 		388D97C5C16124A35E486827 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7225499E6F126B7D893AC413 /* PredictionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEngineTests.swift; sourceTree = "<group>"; };
+		73E2FACC10340FBD4F443F76 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		87E6CB148057F27A7EA08A6B /* MoodLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLog.swift; sourceTree = "<group>"; };
 		8D0B09CC2E2FE3CE5DA74A3D /* Solstice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Solstice.entitlements; sourceTree = "<group>"; };
+		8F77FA1683EAF5F8564DB1B5 /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		A55260F263268830893A6E7B /* SolsticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolsticeApp.swift; sourceTree = "<group>"; };
 		C78D688787E3A0694B70094D /* Solstice.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Solstice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D744845134DEFD16FFBD1DF6 /* SymptomLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomLog.swift; sourceTree = "<group>"; };
@@ -63,6 +69,14 @@
 				7225499E6F126B7D893AC413 /* PredictionEngineTests.swift */,
 			);
 			path = SolsticeTests;
+			sourceTree = "<group>";
+		};
+		4226888ADC7704AF3C3AD462 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				73E2FACC10340FBD4F443F76 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		51BDA561088D46D1A96A54E0 /* Prediction */ = {
@@ -95,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				D586145FCFC55561C2F44A05 /* Extensions */,
+				C8406C8D6D19AA09C1BF8442 /* Features */,
 				13B3883FCF502A8A8B99E029 /* Models */,
 				51BDA561088D46D1A96A54E0 /* Prediction */,
 				105072CA331B5288F4B72768 /* AppState.swift */,
@@ -105,12 +120,30 @@
 			path = Solstice;
 			sourceTree = "<group>";
 		};
+		C8406C8D6D19AA09C1BF8442 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				F6CD9D8510E52375E7A64F03 /* AppLock */,
+				4226888ADC7704AF3C3AD462 /* Onboarding */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		D586145FCFC55561C2F44A05 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				2DD7268AF5EB597F65C5A9DA /* Color+Solstice.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F6CD9D8510E52375E7A64F03 /* AppLock */ = {
+			isa = PBXGroup;
+			children = (
+				0900DC9902F5564B1D397189 /* AppLockManager.swift */,
+				8F77FA1683EAF5F8564DB1B5 /* AppLockView.swift */,
+			);
+			path = AppLock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,12 +223,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E12D4EE5857A4E92E5E6B85 /* AppLockManager.swift in Sources */,
+				EA825A025AF680BFDD805036 /* AppLockView.swift in Sources */,
 				2138259704EF518A56BA14E6 /* AppSettings.swift in Sources */,
 				350909997AE5FD2A58F7919C /* AppState.swift in Sources */,
 				AF7D5026FD28D95EFD28C91B /* Color+Solstice.swift in Sources */,
 				D5A47B79F89A3D04A08DA697 /* ContentView.swift in Sources */,
 				B86736759420D09DBB1DB4A7 /* CycleEntry.swift in Sources */,
 				8BAB126C1D8E9AF13985B400 /* MoodLog.swift in Sources */,
+				4110189A2BBAD2671DD9A4A2 /* OnboardingView.swift in Sources */,
 				0372977FD8C84CC6928CC8CE /* PredictionEngine.swift in Sources */,
 				4B9529C5AAC038ECE5A0E463 /* SolsticeApp.swift in Sources */,
 				55EA4CE2ABC112A9E39E48DB /* SymptomLog.swift in Sources */,
