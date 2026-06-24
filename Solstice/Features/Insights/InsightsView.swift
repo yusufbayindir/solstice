@@ -81,10 +81,8 @@ struct InsightsView: View {
     }
 
     private var hasFlowData: Bool {
-        displayedCycles.contains { _ in
-            // Flow data isn't separately stored; we use periodEnd as proxy for period days
-            true
-        }
+        // Use periodEnd as the proxy for logged flow data (period duration is known)
+        displayedCycles.contains { $0.periodEnd != nil }
     }
 
     private var hasSymptomData: Bool { !symptomFrequency.isEmpty }

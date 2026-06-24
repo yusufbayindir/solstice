@@ -504,15 +504,19 @@ struct SettingsView: View {
                     }
                 }
             } else if status.authorizationStatus == .authorized {
-                if isPeriod { periodReminderEnabled = true } else { fertileReminderEnabled = true }
-                settings?.notificationsEnabled = true
-                try? modelContext.save()
+                await MainActor.run {
+                    if isPeriod { periodReminderEnabled = true } else { fertileReminderEnabled = true }
+                    settings?.notificationsEnabled = true
+                    try? modelContext.save()
+                }
             }
         } else {
-            if isPeriod { periodReminderEnabled = false } else { fertileReminderEnabled = false }
-            if !periodReminderEnabled && !fertileReminderEnabled {
-                settings?.notificationsEnabled = false
-                try? modelContext.save()
+            await MainActor.run {
+                if isPeriod { periodReminderEnabled = false } else { fertileReminderEnabled = false }
+                if !periodReminderEnabled && !fertileReminderEnabled {
+                    settings?.notificationsEnabled = false
+                    try? modelContext.save()
+                }
             }
         }
     }
@@ -574,9 +578,11 @@ struct SettingsView: View {
     private func writeExistingCyclesToHealth(store: HKHealthStore, type: HKCategoryType) async {
         for cycle in cycles {
             guard let periodEnd = cycle.periodEnd else { continue }
+            // Flow level is not stored in the current data model (no dedicated field in CycleEntry).
+            // Use .none to avoid misrepresenting intensity; a future model update can map real values.
             let sample = HKCategorySample(
                 type: type,
-                value: HKCategoryValueMenstrualFlow.medium.rawValue,
+                value: HKCategoryValueMenstrualFlow.none.rawValue,
                 start: cycle.periodStart,
                 end: periodEnd
             )

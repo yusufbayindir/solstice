@@ -24,6 +24,7 @@ struct PrivacyCenterView: View {
     @State private var shareURL: URL? = nil
     @State private var appLockEnabled: Bool = false
     @State private var appLockFailedMessage: String? = nil
+    @State private var cachedBiometryType: LABiometryType = .none
 
     // Static destination for NavigationLink usage
     static var destination: some View {
@@ -48,6 +49,7 @@ struct PrivacyCenterView: View {
             .navigationBarTitleDisplayMode(.large)
             .onAppear {
                 appLockEnabled = settings?.appLockEnabled ?? false
+                cacheBiometryType()
             }
 
             // Delete confirmation overlay
@@ -412,10 +414,7 @@ struct PrivacyCenterView: View {
     // MARK: - Biometry Helpers
 
     private var biometryIconName: String {
-        let context = LAContext()
-        var error: NSError?
-        _ = context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error)
-        switch context.biometryType {
+        switch cachedBiometryType {
         case .faceID: return "faceid"
         case .touchID: return "touchid"
         default: return "lock.fill"
@@ -423,14 +422,18 @@ struct PrivacyCenterView: View {
     }
 
     private var biometryTitle: String {
-        let context = LAContext()
-        var error: NSError?
-        _ = context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error)
-        switch context.biometryType {
+        switch cachedBiometryType {
         case .faceID: return "Lock with Face ID"
         case .touchID: return "Lock with Touch ID"
         default: return "Lock with Device Passcode"
         }
+    }
+
+    private func cacheBiometryType() {
+        let context = LAContext()
+        var error: NSError?
+        _ = context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error)
+        cachedBiometryType = context.biometryType
     }
 
     // MARK: - Actions
@@ -484,18 +487,49 @@ struct PrivacyCenterView: View {
     }
 
     private func buildCSV() -> String {
-        var lines: [String] = ["id,periodStart,periodEnd,cycleLength,notes"]
-        let dateFormatter = ISO8601DateFormatter()
-        let sorted = cycleEntries.sorted { $0.periodStart < $1.periodStart }
-        for entry in sorted {
-            let id = entry.id.uuidString
-            let start = dateFormatter.string(from: entry.periodStart)
-            let end = entry.periodEnd.map { dateFormatter.string(from: $0) } ?? ""
-            let length = entry.cycleLength.map { "\($0)" } ?? ""
-            let notes = entry.notes.replacingOccurrences(of: ",", with: ";")
-            lines.append("\(id),\(start),\(end),\(length),\(notes)")
+        let fmt = ISO8601DateFormatter()
+
+        func csvField(_ s: String) -> String {
+            // RFC 4180: wrap in quotes if contains comma, newline, or quote; escape inner quotes
+            let escaped = s.replacingOccurrences(of: "\"", with: "\"\"")
+            return "\"\(escaped)\""
         }
-        return lines.joined(separator: "\n")
+
+        var sections: [String] = []
+
+        // --- Cycles ---
+        var cycleLines = ["cycle_id,periodStart,periodEnd,cycleLength,notes"]
+        for entry in cycleEntries.sorted(by: { $0.periodStart < $1.periodStart }) {
+            let cols = [
+                entry.id.uuidString,
+                fmt.string(from: entry.periodStart),
+                entry.periodEnd.map { fmt.string(from: $0) } ?? "",
+                entry.cycleLength.map { "\($0)" } ?? "",
+                csvField(entry.notes)
+            ]
+            cycleLines.append(cols.joined(separator: ","))
+        }
+        sections.append(cycleLines.joined(separator: "\n"))
+
+        // --- Symptoms ---
+        var symptomLines = ["cycle_id,date,symptom,intensity"]
+        for log in symptomLogs.sorted(by: { $0.date < $1.date }) {
+            let cycleID = cycleEntries.first(where: { $0.symptomLogs.contains(log) })?.id.uuidString ?? ""
+            let cols = [cycleID, fmt.string(from: log.date), log.symptom.rawValue, "\(log.intensity)"]
+            symptomLines.append(cols.joined(separator: ","))
+        }
+        sections.append(symptomLines.joined(separator: "\n"))
+
+        // --- Moods ---
+        var moodLines = ["cycle_id,date,mood"]
+        for log in moodLogs.sorted(by: { $0.date < $1.date }) {
+            let cycleID = cycleEntries.first(where: { $0.moodLogs.contains(log) })?.id.uuidString ?? ""
+            let cols = [cycleID, fmt.string(from: log.date), log.mood.rawValue]
+            moodLines.append(cols.joined(separator: ","))
+        }
+        sections.append(moodLines.joined(separator: "\n"))
+
+        return sections.joined(separator: "\n\n")
     }
 
     private func performDeleteAll() {
