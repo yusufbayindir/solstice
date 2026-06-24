@@ -34,6 +34,7 @@ struct OnboardingView: View {
     @State private var isAuthenticating: Bool = false
     @State private var authError: String? = nil
     @State private var isSaving: Bool = false
+    @State private var saveError: String? = nil
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -77,6 +78,14 @@ struct OnboardingView: View {
                     .padding(.horizontal, 20)
                     .padding(.bottom, 32)
             }
+        }
+        .alert("Couldn't Save Settings", isPresented: Binding(
+            get: { saveError != nil },
+            set: { if !$0 { saveError = nil } }
+        )) {
+            Button("Try Again") { saveError = nil }
+        } message: {
+            Text(saveError ?? "")
         }
     }
 
@@ -199,12 +208,17 @@ struct OnboardingView: View {
         settings.averageCycleLength = cycleLength
         settings.averagePeriodLength = periodLength
         settings.appLockEnabled = enableAppLock
-        settings.hasCompletedOnboarding = true
 
         do {
             try modelContext.save()
+            // Only mark complete after a confirmed successful save so the
+            // onboarding cover doesn't dismiss on a failed write.
+            settings.hasCompletedOnboarding = true
+            try modelContext.save()
         } catch {
-            // Non-fatal — onboarding still closes; settings may not persist
+            saveError = "Couldn't save your settings. Please try again."
+            isSaving = false
+            return
         }
         isSaving = false
     }

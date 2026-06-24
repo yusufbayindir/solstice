@@ -65,8 +65,15 @@ struct RootView: View {
                 .environment(\.modelContext, modelContext)
         }
         .onChange(of: scenePhase) { _, newPhase in
-            if newPhase == .active {
-                lockManager?.handleForeground(appLockEnabled: settings?.appLockEnabled ?? false)
+            switch newPhase {
+            case .background, .inactive:
+                if settings?.appLockEnabled == true {
+                    appState.appLocked = true
+                }
+            case .active:
+                break // user unlocks via AppLockView button
+            @unknown default:
+                break
             }
         }
         .task {
