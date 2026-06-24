@@ -148,8 +148,8 @@ struct PredictionEngineTests {
 
     // MARK: Fertile window ends on ovulation day (integrated)
 
-    @Test("Fertile window end is the ovulation day")
-    func fertileWindowEndsOnOvulation() {
+    @Test("Fertile window contains ovulation date and starts 4 days before it")
+    func fertileWindowContainsOvulation() {
         let settings = makeSettings(averageCycleLength: 28)
         let entries = makeEntriesWithGaps([28, 28, 28])
         let result = engine.nextPeriodDate(from: entries, settings: settings)
@@ -159,12 +159,47 @@ struct PredictionEngineTests {
             averageCycleLength: 28
         )
 
-        // The fertile window's end should be the day after ovulation starts (window includes ovulation day)
-        let windowEndDay = Calendar.current.startOfDay(
-            for: result.fertileWindow.start.addingTimeInterval(result.fertileWindow.duration - 1)
-        )
-        let ovulationDay = Calendar.current.startOfDay(for: ovulation)
-        #expect(windowEndDay == ovulationDay)
+        // Ovulation day must fall within the fertile window
+        #expect(result.fertileWindow.contains(ovulation))
+
+        // Window must start 4 calendar days before ovulation
+        let calendar = Calendar.current
+        let startDay = calendar.startOfDay(for: result.fertileWindow.start)
+        let ovulationDay = calendar.startOfDay(for: ovulation)
+        let daysBefore = calendar.dateComponents([.day], from: startDay, to: ovulationDay).day ?? -1
+        #expect(daysBefore == 4)
+    }
+
+    // MARK: Zero cycles with known lastPeriodStart uses that anchor
+
+    @Test("Zero cycles with lastPeriodStart anchors prediction to that date")
+    func zeroCyclesWithKnownLastPeriodStart() {
+        let calendar = Calendar.current
+        let knownStart = calendar.date(byAdding: .day, value: -14, to: Date()) ?? Date()
+        let settings = makeSettings(averageCycleLength: 28, lastPeriodStart: knownStart)
+        let result = engine.nextPeriodDate(from: [], settings: settings)
+
+        #expect(result.confidence == .low)
+        // Next period = 28 days from knownStart = 14 days from now
+        let daysUntil = calendar.dateComponents([.day], from: Date(), to: result.nextPeriod).day ?? 0
+        #expect(daysUntil >= 13 && daysUntil <= 15)
+    }
+
+    // MARK: All gaps invalid (filtered out) falls back to settings, not divide-by-zero
+
+    @Test("All-invalid gaps (duplicate entries) falls back to settings default, not divide-by-zero")
+    func allInvalidGapsFallsBackToDefaults() {
+        let settings = makeSettings(averageCycleLength: 30)
+        // Two entries only 1 day apart — filtered out by the 15-day floor
+        let today = Date()
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today) ?? today
+        let entries = [CycleEntry(periodStart: yesterday), CycleEntry(periodStart: today)]
+        let result = engine.nextPeriodDate(from: entries, settings: settings)
+
+        #expect(result.confidence == .low)
+        // Should use settings default of 30 days, anchored to the most recent entry (today)
+        let daysUntil = Calendar.current.dateComponents([.day], from: Date(), to: result.nextPeriod).day ?? 0
+        #expect(daysUntil >= 29 && daysUntil <= 31)
     }
 
     // MARK: daysUntilNextPeriod is non-negative

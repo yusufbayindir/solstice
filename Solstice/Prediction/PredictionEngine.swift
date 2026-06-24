@@ -53,20 +53,27 @@ struct PredictionEngine: Sendable {
             let gaps = computeCycleGaps(from: sortedCycles)
             let windowGaps = Array(gaps.suffix(6))
 
-            let average = windowGaps.reduce(0.0, +) / Double(windowGaps.count)
-            let variance = computeVariance(values: windowGaps, mean: average)
-
-            averageCycleLength = average
-
-            // Confidence is based on variance and number of data points
-            if windowGaps.count >= 3 && variance <= 9.0 {
-                // Standard deviation ≤ 3 days and at least 3 cycles
-                confidence = .high
-            } else if variance <= 25.0 {
-                // Standard deviation ≤ 5 days
-                confidence = .medium
-            } else {
+            if windowGaps.isEmpty {
+                // All gaps were filtered out (duplicate entries, data-entry errors, etc.)
+                // Divide-by-zero guard: fall back to settings defaults.
+                averageCycleLength = Double(settings.averageCycleLength)
                 confidence = .low
+            } else {
+                let average = windowGaps.reduce(0.0, +) / Double(windowGaps.count)
+                let variance = computeVariance(values: windowGaps, mean: average)
+
+                averageCycleLength = average
+
+                // Confidence is based on variance and number of data points
+                if windowGaps.count >= 3 && variance <= 9.0 {
+                    // Standard deviation ≤ 3 days and at least 3 cycles
+                    confidence = .high
+                } else if variance <= 25.0 {
+                    // Standard deviation ≤ 5 days
+                    confidence = .medium
+                } else {
+                    confidence = .low
+                }
             }
         }
 

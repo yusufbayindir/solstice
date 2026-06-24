@@ -3,7 +3,7 @@ import SwiftData
 
 @Model
 final class CycleEntry {
-    var id: UUID
+    @Attribute(.unique) var id: UUID
     var periodStart: Date
     var periodEnd: Date?
     var cycleLength: Int?
