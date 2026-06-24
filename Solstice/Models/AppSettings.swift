@@ -9,6 +9,7 @@ final class AppSettings {
     var appLockEnabled: Bool
     var notificationsEnabled: Bool
     var healthKitSyncEnabled: Bool
+    var hasCompletedOnboarding: Bool
 
     init(
         averageCycleLength: Int = 28,
@@ -16,7 +17,8 @@ final class AppSettings {
         lastPeriodStart: Date? = nil,
         appLockEnabled: Bool = false,
         notificationsEnabled: Bool = false,
-        healthKitSyncEnabled: Bool = false
+        healthKitSyncEnabled: Bool = false,
+        hasCompletedOnboarding: Bool = false
     ) {
         self.averageCycleLength = averageCycleLength
         self.averagePeriodLength = averagePeriodLength
@@ -24,5 +26,6 @@ final class AppSettings {
         self.appLockEnabled = appLockEnabled
         self.notificationsEnabled = notificationsEnabled
         self.healthKitSyncEnabled = healthKitSyncEnabled
+        self.hasCompletedOnboarding = hasCompletedOnboarding
     }
 }
