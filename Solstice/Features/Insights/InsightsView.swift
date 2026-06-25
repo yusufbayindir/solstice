@@ -6,6 +6,7 @@ import Charts
 
 struct InsightsView: View {
     @Environment(AppState.self) private var appState
+    @Environment(StoreManager.self) private var store
     @Query(sort: \CycleEntry.periodStart, order: .reverse)
     private var cycles: [CycleEntry]
 
@@ -13,6 +14,7 @@ struct InsightsView: View {
     @Query private var allMoodLogs: [MoodLog]
 
     @State private var cycleRange: Int = 6
+    @State private var showPaywall = false
     @State private var showPrivacyCenter = false
     @State private var showCycleLengthInfo = false
     @State private var showFlowInfo = false
@@ -107,14 +109,18 @@ struct InsightsView: View {
                         LazyVStack(spacing: 24) {
                             rangeSegmentedControl
                             cycleLengthCard
-                            if hasFlowData {
-                                flowIntensityCard
-                            }
-                            if hasSymptomData {
-                                symptomFrequencyCard
-                            }
-                            if hasMoodData {
-                                moodCard
+                            if store.isPremium {
+                                if hasFlowData {
+                                    flowIntensityCard
+                                }
+                                if hasSymptomData {
+                                    symptomFrequencyCard
+                                }
+                                if hasMoodData {
+                                    moodCard
+                                }
+                            } else {
+                                premiumUpsellCard
                             }
                             privacyBadge
                                 .padding(.bottom, 48)
@@ -140,6 +146,9 @@ struct InsightsView: View {
                     }
                 }
             }
+        }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView(context: "Unlock advanced insights — flow, symptom, and mood patterns across your cycles.")
         }
         .sheet(isPresented: $showCycleLengthInfo) {
             infoSheet(
@@ -418,6 +427,72 @@ struct InsightsView: View {
                 }
             }
         }
+    }
+
+    // MARK: - Premium Upsell Card
+
+    private var premiumUpsellCard: some View {
+        let perks: [(String, String)] = [
+            ("leaf.fill", "Fertile window & ovulation"),
+            ("waveform.path.ecg", "Flow intensity trends"),
+            ("list.bullet.clipboard", "Symptom frequency"),
+            ("face.smiling", "Mood patterns"),
+        ]
+        return Button {
+            showPaywall = true
+        } label: {
+            VStack(alignment: .leading, spacing: 16) {
+                HStack(spacing: 10) {
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 18))
+                        .foregroundStyle(Color.solsticeAccent)
+                        .accessibilityHidden(true)
+                    Text("Unlock with Solstice+")
+                        .font(.title3.bold())
+                        .foregroundStyle(Color.solsticeTextPrimary)
+                }
+
+                Text("Your deeper trends are computed on this iPhone — unlock them to see flow, symptom, and mood patterns across your cycles.")
+                    .font(.callout)
+                    .foregroundStyle(Color.solsticeTextSecondary)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                VStack(alignment: .leading, spacing: 10) {
+                    ForEach(perks, id: \.1) { symbol, label in
+                        HStack(spacing: 12) {
+                            Image(systemName: symbol)
+                                .font(.system(size: 14))
+                                .foregroundStyle(Color.solsticeAccent)
+                                .frame(width: 22)
+                                .accessibilityHidden(true)
+                            Text(label)
+                                .font(.subheadline)
+                                .foregroundStyle(Color.solsticeTextPrimary)
+                            Spacer()
+                        }
+                    }
+                }
+
+                Text("See Plans")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(minHeight: 48)
+                    .background(Color.solsticeAccent, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+            }
+            .padding(20)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.solsticeSurface, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .strokeBorder(Color.solsticeAccent.opacity(0.35), lineWidth: 1)
+            )
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Unlock advanced insights with Solstice Plus. See plans.")
+        .accessibilityAddTraits(.isButton)
     }
 
     // MARK: - Privacy Badge

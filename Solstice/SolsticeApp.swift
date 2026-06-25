@@ -4,13 +4,18 @@ import SwiftData
 @main
 struct SolsticeApp: App {
     @State private var appState = AppState()
+    @State private var store = StoreManager()
     private let predictionEngine = PredictionEngine()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
             RootView(appState: appState, predictionEngine: predictionEngine)
+                .environment(store)
                 .preferredColorScheme(appState.colorSchemePreference)
+                .task {
+                    await store.loadProducts()
+                }
         }
         .modelContainer(for: [
             CycleEntry.self,

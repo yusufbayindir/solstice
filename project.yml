@@ -105,6 +105,9 @@ schemes:
         - SolsticeTests
     run:
       config: Debug
+      # Local StoreKit testing — products resolve from this file in the
+      # simulator with no Apple Developer account or App Store Connect setup.
+      storeKitConfiguration: Solstice.storekit
     archive:
       config: Release
 
