@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0372977FD8C84CC6928CC8CE /* PredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A883B92FC5362D8742FCA6 /* PredictionEngine.swift */; };
 		15DF512F9B8065CCCFEA3664 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3928DABEB9D6FD796079C15 /* CalendarView.swift */; };
+		1748EF7945E0D716595F094B /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E9019A32D13EA2C535AAE4 /* StoreManager.swift */; };
 		2138259704EF518A56BA14E6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEAA90CC8C9C5F7A112C42 /* AppSettings.swift */; };
 		2D23688B328D17DD03085E84 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510F69B0511CBB88152461E7 /* SettingsView.swift */; };
 		350909997AE5FD2A58F7919C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105072CA331B5288F4B72768 /* AppState.swift */; };
@@ -30,6 +31,7 @@
 		E2B96A21A9D1E8DF17FC3E42 /* HomeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1AC2FBD7905C7A65669881 /* HomeTab.swift */; };
 		EA825A025AF680BFDD805036 /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA1683EAF5F8564DB1B5 /* AppLockView.swift */; };
 		F2B5A3F5B41A9D26B49C4949 /* DayDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A6BDC0EE962AADA1A57500 /* DayDetailSheet.swift */; };
+		FDF9836E93E51E52B0D0EA51 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6390331439950DE2D231496A /* PaywallView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05E9019A32D13EA2C535AAE4 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		084FC61B1FFE968D5490C6E0 /* SolsticeTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SolsticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0900DC9902F5564B1D397189 /* AppLockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockManager.swift; sourceTree = "<group>"; };
 		105072CA331B5288F4B72768 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		388D97C5C16124A35E486827 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		47A6BDC0EE962AADA1A57500 /* DayDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailSheet.swift; sourceTree = "<group>"; };
 		510F69B0511CBB88152461E7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		6390331439950DE2D231496A /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		7225499E6F126B7D893AC413 /* PredictionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEngineTests.swift; sourceTree = "<group>"; };
 		73E2FACC10340FBD4F443F76 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		7B5DE8D0C431683D8698604A /* LogEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEntryView.swift; sourceTree = "<group>"; };
@@ -89,6 +93,15 @@
 				510F69B0511CBB88152461E7 /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		1F6C61BD88A4EE6F71196695 /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				6390331439950DE2D231496A /* PaywallView.swift */,
+				05E9019A32D13EA2C535AAE4 /* StoreManager.swift */,
+			);
+			path = Paywall;
 			sourceTree = "<group>";
 		};
 		2134EAD317E414A24EB7B292 /* Privacy */ = {
@@ -201,6 +214,7 @@
 				4BB8DD0894AA6EE1C6C3C62D /* Insights */,
 				BA1218DEDC51F5A900FEEA68 /* LogEntry */,
 				4226888ADC7704AF3C3AD462 /* Onboarding */,
+				1F6C61BD88A4EE6F71196695 /* Paywall */,
 				2134EAD317E414A24EB7B292 /* Privacy */,
 				15C4178952EF917E7CD6D058 /* Settings */,
 			);
@@ -359,10 +373,12 @@
 				824E36936D379B4CBA3E65AB /* LogEntryView.swift in Sources */,
 				8BAB126C1D8E9AF13985B400 /* MoodLog.swift in Sources */,
 				4110189A2BBAD2671DD9A4A2 /* OnboardingView.swift in Sources */,
+				FDF9836E93E51E52B0D0EA51 /* PaywallView.swift in Sources */,
 				0372977FD8C84CC6928CC8CE /* PredictionEngine.swift in Sources */,
 				B890FE207CCA0343197992AF /* PrivacyCenterView.swift in Sources */,
 				2D23688B328D17DD03085E84 /* SettingsView.swift in Sources */,
 				4B9529C5AAC038ECE5A0E463 /* SolsticeApp.swift in Sources */,
+				1748EF7945E0D716595F094B /* StoreManager.swift in Sources */,
 				55EA4CE2ABC112A9E39E48DB /* SymptomLog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

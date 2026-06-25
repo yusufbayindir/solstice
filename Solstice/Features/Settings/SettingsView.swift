@@ -10,6 +10,7 @@ import HealthKit
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(AppState.self) private var appState
+    @Environment(StoreManager.self) private var store
 
     @Query private var settingsArray: [AppSettings]
     @Query(sort: \CycleEntry.periodStart, order: .reverse) private var cycles: [CycleEntry]
@@ -33,6 +34,9 @@ struct SettingsView: View {
     // Alerts
     @State private var showRerunSetupAlert = false
 
+    // Paywall
+    @State private var showPaywall = false
+
     // Version info
     private var appVersion: String {
         let ver = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
@@ -43,6 +47,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
+                premiumSection
                 cycleSection
                 notificationsSection
                 healthSection
@@ -64,6 +69,9 @@ struct SettingsView: View {
                 }
             }
         }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+        }
         .alert("Re-run Setup?", isPresented: $showRerunSetupAlert) {
             Button("Re-run Setup") {
                 // Reset cycle/period prefs only — not logs
@@ -76,6 +84,99 @@ struct SettingsView: View {
         } message: {
             Text("Your logs and history won't be changed — only your cycle length and period preferences will be reset.")
         }
+    }
+
+    // MARK: - Solstice+ Section
+
+    @ViewBuilder
+    private var premiumSection: some View {
+        Section {
+            if store.isPremium {
+                HStack(spacing: 12) {
+                    tileIcon("sparkles", color: .solsticeAccent, bg: .solsticeAccentSoft)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Solstice+")
+                            .font(.body)
+                            .foregroundStyle(Color.solsticeTextPrimary)
+                        Text("Active — thank you for supporting private software.")
+                            .font(.footnote)
+                            .foregroundStyle(Color.solsticeTextSecondary)
+                    }
+                    Spacer()
+                    Image(systemName: "checkmark.seal.fill")
+                        .foregroundStyle(Color.solsticeSuccess)
+                        .accessibilityHidden(true)
+                }
+                .frame(minHeight: 44)
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("Solstice Plus is active")
+
+                Button {
+                    if let url = URL(string: "https://apps.apple.com/account/subscriptions") {
+                        UIApplication.shared.open(url)
+                    }
+                } label: {
+                    HStack(spacing: 12) {
+                        tileIcon("creditcard", color: .solsticeTextSecondary, bg: .solsticeSurfaceSecondary)
+                        Text("Manage Subscription")
+                            .font(.body)
+                            .foregroundStyle(Color.solsticeTextPrimary)
+                        Spacer()
+                        Image(systemName: "arrow.up.forward")
+                            .font(.caption)
+                            .foregroundStyle(Color.solsticeTextTertiary)
+                            .accessibilityHidden(true)
+                    }
+                    .frame(minHeight: 44)
+                }
+                .accessibilityLabel("Manage Subscription")
+                .accessibilityHint("Opens your Apple Account subscriptions.")
+            } else {
+                Button {
+                    showPaywall = true
+                } label: {
+                    HStack(spacing: 12) {
+                        tileIcon("sparkles", color: .solsticeAccent, bg: .solsticeAccentSoft)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Unlock Solstice+")
+                                .font(.body)
+                                .foregroundStyle(Color.solsticeTextPrimary)
+                            Text("Fertile window, advanced insights, Health sync & export.")
+                                .font(.footnote)
+                                .foregroundStyle(Color.solsticeTextSecondary)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.caption)
+                            .foregroundStyle(Color.solsticeTextTertiary)
+                            .accessibilityHidden(true)
+                    }
+                    .frame(minHeight: 44)
+                }
+                .accessibilityLabel("Unlock Solstice Plus")
+                .accessibilityHint("Opens the Solstice Plus plans.")
+
+                Button {
+                    Task { await store.restore() }
+                } label: {
+                    HStack(spacing: 12) {
+                        tileIcon("arrow.clockwise", color: .solsticeTextSecondary, bg: .solsticeSurfaceSecondary)
+                        Text("Restore Purchase")
+                            .font(.body)
+                            .foregroundStyle(Color.solsticeTextPrimary)
+                        Spacer()
+                        if store.isPurchasing {
+                            ProgressView().tint(Color.solsticeAccent)
+                        }
+                    }
+                    .frame(minHeight: 44)
+                }
+                .accessibilityLabel("Restore Purchase")
+            }
+        } header: {
+            Text("SOLSTICE+")
+        }
+        .listRowBackground(Color.solsticeSurface)
     }
 
     // MARK: - Cycle Section
