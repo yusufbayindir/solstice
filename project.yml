@@ -9,6 +9,42 @@ options:
   generateEmptyDirectories: true
   defaultConfig: Debug
   swiftVersion: "6.0"
+  developmentLanguage: en
+
+# Localizations available via Solstice/Localizable.xcstrings (String Catalog).
+# The app follows the device language at runtime and falls back to English.
+knownRegions:
+  - en
+  - tr
+  - fr
+  - de
+  - es
+  - it
+  - pt-BR
+  - pt-PT
+  - nl
+  - pl
+  - ru
+  - uk
+  - ro
+  - sv
+  - nb
+  - da
+  - fi
+  - el
+  - cs
+  - hu
+  - hi
+  - zh-Hans
+  - zh-Hant
+  - ja
+  - ko
+  - ar
+  - he
+  - id
+  - ms
+  - th
+  - vi
 
 settings:
   base:

@@ -26,6 +26,7 @@
 		B86736759420D09DBB1DB4A7 /* CycleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA424B697CDD9ED3F8E312B /* CycleEntry.swift */; };
 		B890FE207CCA0343197992AF /* PrivacyCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B16A862D56018C27C5532C /* PrivacyCenterView.swift */; };
 		D5A47B79F89A3D04A08DA697 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388D97C5C16124A35E486827 /* ContentView.swift */; };
+		D6821CF7A026CB322983CA93 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C5F7CFCAC19B637F957AC9F9 /* Localizable.xcstrings */; };
 		E2B96A21A9D1E8DF17FC3E42 /* HomeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1AC2FBD7905C7A65669881 /* HomeTab.swift */; };
 		EA825A025AF680BFDD805036 /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77FA1683EAF5F8564DB1B5 /* AppLockView.swift */; };
 		F2B5A3F5B41A9D26B49C4949 /* DayDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A6BDC0EE962AADA1A57500 /* DayDetailSheet.swift */; };
@@ -63,6 +64,7 @@
 		A6D76FE56B003E6E72135399 /* CycleRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleRingView.swift; sourceTree = "<group>"; };
 		B4F99336E2E3094BE52B1C7C /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
 		C3928DABEB9D6FD796079C15 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		C5F7CFCAC19B637F957AC9F9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C78D688787E3A0694B70094D /* Solstice.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Solstice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D744845134DEFD16FFBD1DF6 /* SymptomLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomLog.swift; sourceTree = "<group>"; };
 		E8A883B92FC5362D8742FCA6 /* PredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEngine.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				51BDA561088D46D1A96A54E0 /* Prediction */,
 				105072CA331B5288F4B72768 /* AppState.swift */,
 				388D97C5C16124A35E486827 /* ContentView.swift */,
+				C5F7CFCAC19B637F957AC9F9 /* Localizable.xcstrings */,
 				8D0B09CC2E2FE3CE5DA74A3D /* Solstice.entitlements */,
 				A55260F263268830893A6E7B /* SolsticeApp.swift */,
 			);
@@ -247,6 +250,7 @@
 			buildConfigurationList = 8E01911CB77A17899A98AA4C /* Build configuration list for PBXNativeTarget "Solstice" */;
 			buildPhases = (
 				0828F902150F4A56D6454ED0 /* Sources */,
+				5C866679131F2D319F355025 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -279,7 +283,37 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				ar,
+				cs,
+				da,
+				de,
+				el,
 				en,
+				es,
+				fi,
+				fr,
+				he,
+				hi,
+				hu,
+				id,
+				it,
+				ja,
+				ko,
+				ms,
+				nb,
+				nl,
+				pl,
+				"pt-BR",
+				"pt-PT",
+				ro,
+				ru,
+				sv,
+				th,
+				tr,
+				uk,
+				vi,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = A345356EB37BB601D1FF69F6;
 			minimizedProjectReferenceProxies = 1;
@@ -292,6 +326,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5C866679131F2D319F355025 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6821CF7A026CB322983CA93 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0828F902150F4A56D6454ED0 /* Sources */ = {
