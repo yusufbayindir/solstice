@@ -72,6 +72,17 @@ struct SettingsView: View {
         .sheet(isPresented: $showPaywall) {
             PaywallView()
         }
+        .alert(
+            "Restore Purchase",
+            isPresented: Binding(
+                get: { store.purchaseError != nil && !showPaywall },
+                set: { if !$0 { store.purchaseError = nil } }
+            )
+        ) {
+            Button("OK") { store.purchaseError = nil }
+        } message: {
+            Text(store.purchaseError ?? "")
+        }
         .alert("Re-run Setup?", isPresented: $showRerunSetupAlert) {
             Button("Re-run Setup") {
                 // Reset cycle/period prefs only — not logs

@@ -75,6 +75,10 @@ final class StoreManager {
 
     func loadProducts() async {
         guard loadState != .loading else { return }
+        // Entitlements are independent of the product catalog — refresh them first so
+        // an owner is never gated off premium just because the catalog failed to load
+        // (e.g. offline at launch).
+        await refreshEntitlements()
         loadState = .loading
         do {
             let fetched = try await Product.products(for: Self.allProductIDs)
@@ -82,7 +86,6 @@ final class StoreManager {
                 order(for: lhs.id) < order(for: rhs.id)
             }
             loadState = .loaded
-            await refreshEntitlements()
         } catch {
             loadState = .failed(error.localizedDescription)
         }
