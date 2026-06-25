@@ -69,11 +69,17 @@ targets:
         DEVELOPMENT_TEAM: ""
         CODE_SIGN_IDENTITY: ""
         GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         CURRENT_PROJECT_VERSION: 1
         MARKETING_VERSION: 1.0
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait"
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        # Privacy usage strings — required by iOS. Without these the app HARD CRASHES
+        # the first time Face ID / HealthKit is invoked, and App Review rejects the build.
+        INFOPLIST_KEY_NSFaceIDUsageDescription: "Solstice uses Face ID to lock the app, so your cycle stays private even if someone else has your phone."
+        INFOPLIST_KEY_NSHealthShareUsageDescription: "Solstice reads your Menstrual Flow from Apple Health to keep your cycle predictions accurate. Your data stays on your device."
+        INFOPLIST_KEY_NSHealthUpdateUsageDescription: "Solstice saves the periods you log to Apple Health, so your cycle data stays consistent across your health apps."
     entitlements:
       path: Solstice/Solstice.entitlements
       properties:

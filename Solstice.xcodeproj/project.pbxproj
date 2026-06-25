@@ -13,6 +13,7 @@
 		2138259704EF518A56BA14E6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEAA90CC8C9C5F7A112C42 /* AppSettings.swift */; };
 		2D23688B328D17DD03085E84 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510F69B0511CBB88152461E7 /* SettingsView.swift */; };
 		350909997AE5FD2A58F7919C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105072CA331B5288F4B72768 /* AppState.swift */; };
+		3BCC585AF09084D2E2E61726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4814BBA3665CC93B91177C74 /* Assets.xcassets */; };
 		4110189A2BBAD2671DD9A4A2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2FACC10340FBD4F443F76 /* OnboardingView.swift */; };
 		4B59E34A85BB90A61F417694 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F99336E2E3094BE52B1C7C /* InsightsView.swift */; };
 		4B9529C5AAC038ECE5A0E463 /* SolsticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55260F263268830893A6E7B /* SolsticeApp.swift */; };
@@ -54,6 +55,7 @@
 		2FA424B697CDD9ED3F8E312B /* CycleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleEntry.swift; sourceTree = "<group>"; };
 		388D97C5C16124A35E486827 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		47A6BDC0EE962AADA1A57500 /* DayDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailSheet.swift; sourceTree = "<group>"; };
+		4814BBA3665CC93B91177C74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		510F69B0511CBB88152461E7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6390331439950DE2D231496A /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		7225499E6F126B7D893AC413 /* PredictionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionEngineTests.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				13B3883FCF502A8A8B99E029 /* Models */,
 				51BDA561088D46D1A96A54E0 /* Prediction */,
 				105072CA331B5288F4B72768 /* AppState.swift */,
+				4814BBA3665CC93B91177C74 /* Assets.xcassets */,
 				388D97C5C16124A35E486827 /* ContentView.swift */,
 				C5F7CFCAC19B637F957AC9F9 /* Localizable.xcstrings */,
 				8D0B09CC2E2FE3CE5DA74A3D /* Solstice.entitlements */,
@@ -346,6 +349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BCC585AF09084D2E2E61726 /* Assets.xcassets in Resources */,
 				D6821CF7A026CB322983CA93 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,6 +539,9 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Solstice uses Face ID to lock the app, so your cycle stays private even if someone else has your phone.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Solstice reads your Menstrual Flow from Apple Health to keep your cycle predictions accurate. Your data stays on your device.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Solstice saves the periods you log to Apple Health, so your cycle data stays consistent across your health apps.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -580,6 +587,9 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Solstice uses Face ID to lock the app, so your cycle stays private even if someone else has your phone.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Solstice reads your Menstrual Flow from Apple Health to keep your cycle predictions accurate. Your data stays on your device.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Solstice saves the periods you log to Apple Health, so your cycle data stays consistent across your health apps.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
