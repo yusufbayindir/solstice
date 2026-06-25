@@ -358,17 +358,15 @@ struct PrivacyCenterView: View {
                     .foregroundStyle(Color.solsticeTextSecondary)
                 Text("·")
                     .foregroundStyle(Color.solsticeTextSecondary)
-                Text("Privacy policy")
+                Link("Privacy policy", destination: URL(string: "https://yusufbayindir.github.io/solstice/privacy.html")!)
                     .font(.footnote)
                     .foregroundStyle(Color.solsticeAccent)
-                    .onTapGesture {}
                     .frame(minWidth: 44, minHeight: 44)
                 Text("·")
                     .foregroundStyle(Color.solsticeTextSecondary)
-                Text("Open source")
+                Link("Terms of Use", destination: URL(string: "https://yusufbayindir.github.io/solstice/terms.html")!)
                     .font(.footnote)
                     .foregroundStyle(Color.solsticeAccent)
-                    .onTapGesture {}
                     .frame(minWidth: 44, minHeight: 44)
             }
             .frame(maxWidth: .infinity, alignment: .center)

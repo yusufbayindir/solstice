@@ -305,8 +305,8 @@ struct PaywallView: View {
                 .multilineTextAlignment(.center)
 
             HStack(spacing: 16) {
-                Link("Terms", destination: URL(string: "https://solstice.app/terms")!)
-                Link("Privacy Policy", destination: URL(string: "https://solstice.app/privacy")!)
+                Link("Terms", destination: URL(string: "https://yusufbayindir.github.io/solstice/terms.html")!)
+                Link("Privacy Policy", destination: URL(string: "https://yusufbayindir.github.io/solstice/privacy.html")!)
             }
             .font(.caption2.weight(.medium))
             .foregroundStyle(Color.solsticeTextSecondary)
